@@ -15,14 +15,19 @@ from verify_review_gate import verify
 RECORD = re.compile(r"^jurisdictions/[^/]+/[^/]+/record\.yaml$")
 EVIDENCE = re.compile(r"^jurisdictions/[^/]+/[^/]+/evidence\.yaml$")
 GATE_DIR = "review-gates/"
-DEPLOYMENT = re.compile(r'''(?ix)
+DEPLOYMENT_CONFIG_SUFFIXES = {".json", ".yaml", ".yml"}
+DEPLOYMENT = re.compile(rb'''(?ix)
     ["']?(?:flashable|deployable|release[_-]?kind)["']?\s*[:=]\s*
     ["']?(?:true|yes|on|1|firmware[_-]?image|production)["']?
 ''')
 
 
 def git(root, *args):
-    return subprocess.run(["git", *args], cwd=root, check=True, text=True, stdout=subprocess.PIPE).stdout
+    return subprocess.run(["git", *args], cwd=root, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout
+
+
+def git_bytes(root, *args):
+    return subprocess.run(["git", *args], cwd=root, check=True, stdout=subprocess.PIPE).stdout
 
 
 def status_at(root, revision, path):
@@ -63,12 +68,15 @@ def required_scopes(root, base, head):
                 # Unknown YAML status and all non-automatic lifecycle changes
                 # are safety-relevant until a schema-aware classifier exists.
                 required.setdefault(path, set()).add("regulatory_change")
-        try:
-            text = git(root, "show", f"{head}:{path}")
-        except subprocess.CalledProcessError:
-            continue
-        if DEPLOYMENT.search(text):
-            required.setdefault(path, set()).add("deployment")
+        if Path(path).suffix.lower() in DEPLOYMENT_CONFIG_SUFFIXES:
+            try:
+                content = git_bytes(root, "show", f"{head}:{path}")
+            except subprocess.CalledProcessError:
+                continue
+            # Evidence commonly includes PDFs and images.  Search bytes so
+            # structured files with non-UTF-8 evidence cannot crash the gate.
+            if DEPLOYMENT.search(content):
+                required.setdefault(path, set()).add("deployment")
     return required
 
 

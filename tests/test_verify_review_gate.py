@@ -104,6 +104,20 @@ class EnforceReviewGatesTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "deployment:artifact.json"):
                 ENFORCER.enforce(root, base, "HEAD")
 
+    def test_binary_evidence_does_not_require_utf8_decoding(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.git(root, "init", "-q")
+            evidence = root / "documents" / "JP" / "example.pdf"
+            evidence.parent.mkdir(parents=True)
+            evidence.write_bytes(b"%PDF-1.7\nbase")
+            self.commit(root, "base")
+            base = self.git(root, "rev-parse", "HEAD")
+            # Deliberately invalid UTF-8, as is normal for PDF content.
+            evidence.write_bytes(b"%PDF-1.7\n\xe2\x28\xa1")
+            self.commit(root, "add binary evidence")
+            ENFORCER.enforce(root, base, "HEAD")
+
     def test_public_release_gate_must_cover_every_downloaded_asset(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
