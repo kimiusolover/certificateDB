@@ -1,0 +1,48 @@
+name: Evidence review gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+# Trust boundary: these gates protect releases created by this workflow only.
+# A user or external token with GitHub contents-write permission can create a
+# Release directly and bypass Actions; restrict those credentials separately.
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - run: make test
+      - name: Enforce review gates
+        if: github.event_name == 'pull_request'
+        run: python3 tools/enforce_review_gates.py --base '${{ github.event.pull_request.base.sha }}' --head '${{ github.sha }}'
+      - name: Enforce review gates on main
+        if: github.event_name == 'push'
+        run: python3 tools/enforce_review_gates.py --base '${{ github.event.before }}' --head '${{ github.sha }}'
+  public-release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: '${{ github.ref }}'
+          fetch-depth: 0
+      - name: Require publication review
+        run: |
+          test -d release-assets
+          test -n "$(find release-assets -maxdepth 1 -type f -print -quit)"
+          python3 tools/enforce_review_gates.py --base 'HEAD^' --head HEAD \
+            --require-scope public_release --released-content-dir release-assets
+      - name: Scan public content
+        run: python3 tools/scan_public_content.py --directory release-assets
+      - name: Publish reviewed assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" release-assets/* --title "$GITHUB_REF_NAME" --generate-notes

@@ -1,0 +1,69 @@
+apiVersion: certificateDB/v1
+kind: EvidenceBundle
+recordRef: jurisdictions/JP/201-230283/record.yaml
+sources:
+  - role: test_report
+    sourceUrl: urn:sha256:748aa89db684068662b6cdd370f0753f3642b7e4cf330b083c259ae14bcc9a83
+    sourceUrlRetrievedAt: "2026-08-29T23:27:57Z"
+    retrievedAt: "2026-08-29T23:27:57Z"
+    retriever: user-supplied import
+    originalFilename: 201-230283_02_001.pdf
+    mimeType: application/pdf
+    sha256: 748aa89db684068662b6cdd370f0753f3642b7e4cf330b083c259ae14bcc9a83
+    accessRestriction: >-
+      User-supplied measurement report. Origin URL is not yet recorded, so
+      this source cannot by itself promote the record to verified.
+    observations:
+      - field: device_identity
+        originalValue: "Test Model: Archer AX1800; Series Model: Archer AX23V; Hardware Version: 1.0"
+        meaning: device_identity
+        locator: {page: 5, description: "General information table"}
+      - field: dfs_requirements
+        originalValue: "CAC >=60s; channel move <=10s; closing transmission <=0.26s; non-occupancy >=30min"
+        meaning: regulatory_limit
+        locator: {page: 9, description: "DFS requirement values table"}
+  - role: test_report
+    sourceUrl: urn:sha256:baf492385f88a582be6103a11bd3cd34cf0cd77c6e2142e02aa96cef505119d2
+    sourceUrlRetrievedAt: "2026-08-29T23:27:57Z"
+    retrievedAt: "2026-08-29T23:27:57Z"
+    retriever: user-supplied import
+    originalFilename: 201-230283_02_002.pdf
+    mimeType: application/pdf
+    sha256: baf492385f88a582be6103a11bd3cd34cf0cd77c6e2142e02aa96cef505119d2
+    accessRestriction: >-
+      User-supplied measurement report. Origin URL is not yet recorded, so
+      this source cannot by itself promote the record to verified.
+    observations:
+      - field: device_identity
+        originalValue: "Test Model: Archer AX1800; Series Model: Archer AX23V; Hardware Version: 1.0"
+        meaning: device_identity
+        locator: {page: 5, description: "General information table"}
+      - field: 2g4_channel_sets
+        originalValue: "HT20/HE20: CH01-CH13; HT40/HE40: CH03-CH11"
+        meaning: configured
+        locator: {page: 8, description: "Channel list"}
+      - field: 2g4_antenna_power_density_limit
+        originalValue: "20 MHz <=10 mW/MHz; 40 MHz <=5 mW/MHz"
+        originalUnit: mW/MHz
+        meaning: regulatory_limit
+        locator: {page: 19, description: "Antenna power tolerance limit table"}
+  - role: test_report
+    sourceUrl: urn:sha256:fb8a4b0de0bd7d576c0b72c6ed9db389c5315657e41f504e334c7df616ba0ec0
+    sourceUrlRetrievedAt: "2026-08-29T23:27:57Z"
+    retrievedAt: "2026-08-29T23:27:57Z"
+    retriever: user-supplied import
+    originalFilename: 201-230283_02_003.pdf
+    mimeType: application/pdf
+    sha256: fb8a4b0de0bd7d576c0b72c6ed9db389c5315657e41f504e334c7df616ba0ec0
+    accessRestriction: >-
+      User-supplied measurement report. Origin URL is not yet recorded, so
+      this source cannot by itself promote the record to verified.
+    observations:
+      - field: device_identity
+        originalValue: "Test Model: Archer AX1800; Series Model: Archer AX23V; Hardware Version: 1.0"
+        meaning: device_identity
+        locator: {page: 5, description: "General information table"}
+      - field: 5ghz_channel_sets
+        originalValue: "W52: 36,40,44,48; W53: 52,56,60,64; W56: 100-144"
+        meaning: configured
+        locator: {page: 8, description: "Channel list"}

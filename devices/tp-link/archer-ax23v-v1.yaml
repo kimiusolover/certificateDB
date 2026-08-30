@@ -1,0 +1,11 @@
+apiVersion: certificateDB/v1
+kind: DeviceVariant
+metadata:
+  name: tp-link.archer-ax23v-v1
+manufacturer: TP-Link Corporation Limited
+model: Archer AX23V
+hardwareRevision: "1.0"
+antennaConfiguration: two fixed dipole antennas; 2T2R as reported
+notes: >-
+  Identity record only. Hardware capability and calibration data remain owned
+  by router-platform and are required consumer inputs.

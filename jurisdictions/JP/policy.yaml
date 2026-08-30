@@ -1,0 +1,75 @@
+apiVersion: certificateDB/v1
+kind: JurisdictionPolicy
+metadata:
+  name: JP
+  title: Japan radio-equipment certification evidence policy
+
+# This policy describes evidence handling. It is not a legal opinion and does
+# not itself establish that a device may be operated in Japan.
+regulatoryBasis:
+  - title: 電波法（昭和二十五年法律第百三十一号）
+    authority: 総務省
+    sourceUrl: https://laws.e-gov.go.jp/law/325AC0000000131
+    relevance: >-
+      Establishes the statutory framework for radio equipment and the
+      technical-conformity certification / construction-design certification
+      regime for specified radio equipment.
+  - title: 特定無線設備の技術基準適合証明等に関する規則
+    authority: 総務省
+    sourceUrl: https://laws.e-gov.go.jp/document?lawid=356M50001000037_20260325_508M60000008029
+    relevance: >-
+      Defines details delegated under the Radio Act. Applicable requirements
+      must be identified from the current official text for each record.
+
+certification:
+  authority: MIC
+  requiredEvidence:
+    - officialRegistryRecord
+    - officialCertificateOrTestReport
+    - certificationIdentifier
+    - sourceUrl
+    - manualSearchEvidence
+    - sourceSHA256
+  verifiedRequirements:
+    - Exact device model, hardware revision, radio/board revision, and antenna
+      configuration are consistent with the evidence, or an explicit mismatch
+      assessment is reviewed.
+    - Every safety-relevant extracted observation has a document page or
+      equivalent precise locator.
+    - A registry search reference records the exact manually checked URL,
+      `checkedAt`, `checkedBy`, and `matchStatus`. URL reachability is not a
+      validation target and is never checked automatically.
+    - A record with `matchStatus: unconfirmed` or `mismatch` must remain below
+      `reviewed` and `verified` and cannot supply device, RF, or firmware
+      constraints.
+
+urlHandling:
+  registrySearch:
+    preserveExactUrl: true
+    retrieval: manual
+    automaticAccess: prohibited
+    prohibitedActions:
+      - preview_fetch
+      - reachability_check
+      - link_monitoring
+      - scheduled_recrawl
+      - server_side_proxy
+  notes:
+    - The official search form is for a new human investigation; an exact
+      search-result URL is immutable evidence of one completed investigation.
+    - A link may be opened by a user for re-checking, but that action is outside
+      repository validation and does not update the saved evidence.
+
+consumerRequirements:
+  - A consumer must not treat a MIC identifier, physical label, or country code
+    alone as permission to transmit.
+  - A consumer must calculate effective RF settings from the most restrictive
+    applicable certification, current regulatory, hardware/calibration, and
+    driver/kernel constraints.
+  - A missing or conflicting safety-relevant input must fail closed.
+
+prohibitedClaims:
+  - certificateDB does not issue or recreate a technical-conformity
+    certification.
+  - certificateDB does not make a conclusive legal-operability determination.
+  - A physical-label image is not official certification evidence.

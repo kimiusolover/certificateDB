@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certificate-db.example/schemas/evidence-bundle.schema.json",
+  "title": "EvidenceBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "recordRef", "sources"],
+  "properties": {
+    "apiVersion": { "const": "certificateDB/v1" },
+    "kind": { "const": "EvidenceBundle" },
+    "recordRef": { "type": "string", "minLength": 1 },
+    "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/source" } }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "sourceUrl", "sourceUrlRetrievedAt", "retrievedAt", "sha256", "mimeType", "observations"],
+      "properties": {
+        "role": { "enum": ["registry_record", "certificate", "test_report", "manufacturer_declaration", "physical_label_observation"] },
+        "sourceUrl": { "type": "string", "format": "uri" },
+        "sourceUrlRetrievedAt": { "type": "string", "format": "date-time" },
+        "retrievedAt": { "type": "string", "format": "date-time" },
+        "retriever": { "type": "string", "minLength": 1 },
+        "originalFilename": { "type": "string", "minLength": 1 },
+        "mimeType": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "accessRestriction": { "type": "string" },
+        "retrieval": { "enum": ["manual", "user_supplied_import", "other"] },
+        "checkedAt": { "type": "string", "format": "date-time" },
+        "checkedBy": { "type": "string", "minLength": 1 },
+        "matchStatus": { "enum": ["unconfirmed", "confirmed", "mismatch"] },
+        "observations": { "type": "array", "items": { "$ref": "#/$defs/observation" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "role": { "const": "registry_record" } }, "required": ["role"] },
+          "then": {
+            "required": ["retrieval", "checkedAt", "checkedBy", "matchStatus"],
+            "properties": { "retrieval": { "const": "manual" } }
+          }
+        }
+      ]
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "originalValue", "meaning", "locator"],
+      "properties": {
+        "field": { "type": "string", "minLength": 1 },
+        "originalValue": { "type": ["string", "number", "integer", "boolean", "array", "object", "null"] },
+        "originalUnit": { "type": "string", "minLength": 1 },
+        "meaning": { "enum": ["measured", "configured", "certified_max", "regulatory_limit", "eirp", "conducted_power", "device_identity", "physical_label_observation"] },
+        "locator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["description"],
+          "properties": {
+            "page": { "type": "integer", "minimum": 1 },
+            "table": { "type": "string" },
+            "section": { "type": "string" },
+            "description": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  }
+}

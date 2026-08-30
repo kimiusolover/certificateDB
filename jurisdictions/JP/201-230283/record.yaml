@@ -1,0 +1,11 @@
+apiVersion: certificateDB/v1
+kind: CertificationRecord
+metadata:
+  name: jp-201-230283-tp-link-archer-ax23v-v1
+status: extracted
+jurisdiction: JP
+authority: MIC
+certificationId: "201-230283"
+deviceRef: devices/tp-link/archer-ax23v-v1.yaml
+evidenceRef: jurisdictions/JP/201-230283/evidence.yaml
+matchStatus: unconfirmed

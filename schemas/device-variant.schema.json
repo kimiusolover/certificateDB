@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certificate-db.example/schemas/device-variant.schema.json",
+  "title": "DeviceVariant",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "metadata", "manufacturer", "model", "hardwareRevision"],
+  "properties": {
+    "apiVersion": { "const": "certificateDB/v1" },
+    "kind": { "const": "DeviceVariant" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": { "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" } }
+    },
+    "manufacturer": { "type": "string", "minLength": 1 },
+    "model": { "type": "string", "minLength": 1 },
+    "hardwareRevision": { "type": "string", "minLength": 1 },
+    "radioBoardRevision": { "type": "string", "minLength": 1 },
+    "antennaConfiguration": { "type": "string", "minLength": 1 },
+    "notes": { "type": "string" }
+  }
+}

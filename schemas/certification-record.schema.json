@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://certificate-db.example/schemas/certification-record.schema.json",
+  "title": "CertificationRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "metadata", "status", "jurisdiction", "authority", "certificationId", "deviceRef", "evidenceRef", "matchStatus"],
+  "properties": {
+    "apiVersion": { "const": "certificateDB/v1" },
+    "kind": { "const": "CertificationRecord" },
+    "metadata": { "$ref": "#/$defs/metadata" },
+    "status": { "enum": ["candidate", "extracted", "reviewed", "verified", "superseded", "retracted"] },
+    "jurisdiction": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "authority": { "type": "string", "minLength": 1 },
+    "certificationId": { "type": "string", "minLength": 1 },
+    "deviceRef": { "type": "string", "minLength": 1 },
+    "evidenceRef": { "type": "string", "minLength": 1 },
+    "matchStatus": { "enum": ["unconfirmed", "confirmed", "mismatch"] },
+    "supersedes": { "type": "string", "minLength": 1 },
+    "review": { "$ref": "#/$defs/review" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["reviewed", "verified"] } }, "required": ["status"] },
+      "then": { "required": ["review"] }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["reviewed", "verified"] } }, "required": ["status"] },
+      "then": { "properties": { "matchStatus": { "const": "confirmed" } } }
+    }
+  ],
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": { "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" } }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewedAt", "reviewer", "decision", "subjectSha256", "evidenceSha256"],
+      "properties": {
+        "reviewedAt": { "type": "string", "format": "date-time" },
+        "reviewer": { "type": "string", "minLength": 1 },
+        "decision": { "const": "accepted" },
+        "subjectSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "evidenceSha256": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "uniqueItems": true },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
