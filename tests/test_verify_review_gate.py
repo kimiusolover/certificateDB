@@ -160,3 +160,8 @@ class ReleaseWorkflowTest(unittest.TestCase):
         self.assertNotIn("\n  release:\n", workflow)
         self.assertLess(workflow.index("Require publication review"), workflow.index("Publish reviewed assets"))
         self.assertIn("gh release create", workflow)
+
+    def test_push_falls_back_to_a_full_tree_review_when_base_is_unavailable(self):
+        workflow = (Path(__file__).parents[1] / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+        self.assertIn('git cat-file -e "$BASE^{commit}"', workflow)
+        self.assertIn('git hash-object -t tree /dev/null', workflow)

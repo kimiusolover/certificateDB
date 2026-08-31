@@ -11,9 +11,20 @@ regulatoryBasis:
     authority: 総務省
     sourceUrl: https://laws.e-gov.go.jp/law/325AC0000000131
     relevance: >-
-      Establishes the statutory framework for radio equipment and the
-      technical-conformity certification / construction-design certification
-      regime for specified radio equipment.
+      Establishes the statutory framework for radio equipment. Article 1
+      states the Act's purpose; Chapter 3, Section 1 provides the
+      technical-conformity certification and construction-design certification
+      regime for specified radio equipment, including construction-design
+      certification in Article 38-24.
+    useInCertificateDB: >-
+      Legal-basis source only. It explains why an official certification
+      record and its supporting documents are relevant; it does not identify
+      an exact device, hardware revision, channel, bandwidth, antenna, or
+      power limit.
+    sourceHandling: >-
+      Treat this as a living official law URL. Record the applicable official
+      text and its checked date in any future rule-specific evidence; do not
+      derive a numeric device constraint from this statutory source alone.
   - title: 特定無線設備の技術基準適合証明等に関する規則
     authority: 総務省
     sourceUrl: https://laws.e-gov.go.jp/document?lawid=356M50001000037_20260325_508M60000008029

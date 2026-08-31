@@ -25,7 +25,17 @@ jobs:
         run: python3 tools/enforce_review_gates.py --base '${{ github.event.pull_request.base.sha }}' --head '${{ github.sha }}'
       - name: Enforce review gates on main
         if: github.event_name == 'push'
-        run: python3 tools/enforce_review_gates.py --base '${{ github.event.before }}' --head '${{ github.sha }}'
+        env:
+          BASE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            # A force-push can make the previous tip unreachable. Compare the
+            # whole current tree in that case, so gate enforcement remains
+            # fail-closed instead of being skipped.
+            BASE="$(git hash-object -t tree /dev/null)"
+          fi
+          python3 tools/enforce_review_gates.py --base "$BASE" --head "$HEAD"
   public-release:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
