@@ -4,39 +4,27 @@
   "scope": "verified_promotion",
   "subject": {
     "path": "jurisdictions/JP/201-230283/record.yaml",
-    "sha256": "81061baed758e9296ebd2cfad35e711499dd2f041bbb22ad41718cd8797dc455"
+    "sha256": "c6a9f428ba329a85e191f0d8033bf7eb78752cfa9752972fba60f05e5ab8a2bc"
   },
   "evidence": [
     {
       "path": "jurisdictions/JP/201-230283/evidence.yaml",
-      "sha256": "bd856de5f7714d86cdd27539ba8c84937679fe42eb1c70344ae0edbf3df3c9fb"
+      "sha256": "3f2b960b47df55cfc1d5fa25b06b64a253d835132f4e3ef09829cf471ae9c3b9"
     },
     {
       "path": "documents/JP/201-230283/SearchResult (1).csv",
       "sha256": "a1df493125047a57c9738baf7b49ddf1ec7bdb3dddaf00c73605bfd05333ea30"
     },
     {
-      "path": "documents/JP/201-230283/201-230283_01_004.pdf",
-      "sha256": "0864bb9284c93530310e68e67fc8722344161a4ab87b9c0078fd216f74383f67"
-    },
-    {
-      "path": "documents/JP/201-230283/201-230283_02_001.pdf",
-      "sha256": "748aa89db684068662b6cdd370f0753f3642b7e4cf330b083c259ae14bcc9a83"
-    },
-    {
-      "path": "documents/JP/201-230283/201-230283_02_002.pdf",
-      "sha256": "baf492385f88a582be6103a11bd3cd34cf0cd77c6e2142e02aa96cef505119d2"
-    },
-    {
-      "path": "documents/JP/201-230283/201-230283_02_003.pdf",
-      "sha256": "fb8a4b0de0bd7d576c0b72c6ed9db389c5315657e41f504e334c7df616ba0ec0"
+      "path": "documents/JP/201-230283/LOCAL_EVIDENCE.md",
+      "sha256": "44c74a17e590bb88366136d0d4e2e86ce1737273474ce821058a96b3bd68ed8e"
     }
   ],
   "review": {
     "required": true,
     "reviewer": "nakan",
-    "reviewedAt": "2026-08-31T18:35:05+09:00",
+    "reviewedAt": "2026-08-31T19:15:56+09:00",
     "decision": "accepted",
-    "notes": "Self-review promoted this evidence record to verified without device disassembly. The scope verifies identity, source integrity, and current extracted safety-relevant observations only. Radio/board revision, calibration, board data, runtime configuration, and RF transmission rights remain outside this record and unknown where not evidenced."
+    "notes": "Self-review promoted this evidence record to verified without device disassembly. The scope verifies identity, source integrity, and current extracted safety-relevant observations only. Test-report originals are retained privately and verified by their recorded official URLs and SHA-256 values. Radio/board revision, calibration, board data, runtime configuration, and RF transmission rights remain outside this record and unknown where not evidenced."
   }
 }
