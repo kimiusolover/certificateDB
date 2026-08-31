@@ -2,42 +2,88 @@ apiVersion: certificateDB/v1
 kind: EvidenceBundle
 recordRef: jurisdictions/JP/201-230283/record.yaml
 sources:
+  - role: registry_record
+    sourceUrl: "https://www.tele.soumu.go.jp/giteki/SearchServlet?pageID=jk01&NUM_TYPE=1&NUM=201-230283&NAM=&FOM=&PC=&YAR_FROM=&MON_FROM=&DAY_FROM=&YAR_TO=&MON_TO=&DAY_TO=&RAD=00-00-00-00&TEC=1&TEC=2&TEC=3&TEC=4&TEC=5&TEC=6&TEC=7&DC=0&SC=1#searchlist"
+    sourceUrlRetrievedAt: "2026-08-31T10:55:04+09:00"
+    retrievedAt: "2026-08-31T10:55:04+09:00"
+    retriever: nakan
+    originalFilename: "SearchResult (1).csv"
+    mimeType: text/csv
+    sha256: a1df493125047a57c9738baf7b49ddf1ec7bdb3dddaf00c73605bfd05333ea30
+    retrieval: manual
+    checkedAt: "2026-08-31T10:55:04+09:00"
+    checkedBy: nakan
+    matchStatus: confirmed
+    observations:
+      - field: device_identity
+        originalValue: "TP-Link Corporation Limited; Archer AX1800 Archer AX23V; 201-230283"
+        meaning: device_identity
+        locator: {description: "Official MIC search CSV rows for certification number 201-230283"}
+  - role: physical_label_observation
+    sourceUrl: urn:sha256:d6bd71e3afa90da0e5b0c0fc9f61a02e178641bb19e163d634d7ae96637cbca0
+    sourceUrlRetrievedAt: "2026-08-31T11:52:15+09:00"
+    retrievedAt: "2026-08-31T11:52:15+09:00"
+    retriever: nakan
+    originalFilename: "PXL_20260831_024529000~2.jpg"
+    mimeType: image/jpeg
+    sha256: d6bd71e3afa90da0e5b0c0fc9f61a02e178641bb19e163d634d7ae96637cbca0
+    accessRestriction: >-
+      User-held private physical-label photograph. It contains a serial number
+      and is intentionally not retained in this repository.
+    retrieval: user_supplied_import
+    observations:
+      - field: device_identity
+        originalValue: "Label: Archer AX23V; JP/1.0; R 201-230283"
+        meaning: physical_label_observation
+        locator: {description: "Device underside label; serial number intentionally excluded"}
   - role: test_report
-    sourceUrl: urn:sha256:748aa89db684068662b6cdd370f0753f3642b7e4cf330b083c259ae14bcc9a83
-    sourceUrlRetrievedAt: "2026-08-29T23:27:57Z"
+    sourceUrl: "https://www.tele.soumu.go.jp/giteki/SearchServlet2?PageID=jt01&ATF=127747004"
+    sourceUrlRetrievedAt: "2026-08-31T12:02:30+09:00"
+    retrievedAt: "2026-08-31T10:55:04+09:00"
+    retriever: user-supplied import
+    originalFilename: 201-230283_01_004.pdf
+    mimeType: application/pdf
+    sha256: 0864bb9284c93530310e68e67fc8722344161a4ab87b9c0078fd216f74383f67
+    accessRestriction: >-
+      User-supplied EUT photograph attachment. The official source URL was
+      manually recorded; retention and redistribution terms remain unassessed.
+    observations: []
+  - role: test_report
+    sourceUrl: "https://www.tele.soumu.go.jp/giteki/SearchServlet2?PageID=jt01&ATF=127744001"
+    sourceUrlRetrievedAt: "2026-08-31T12:04:23+09:00"
     retrievedAt: "2026-08-29T23:27:57Z"
     retriever: user-supplied import
     originalFilename: 201-230283_02_001.pdf
     mimeType: application/pdf
     sha256: 748aa89db684068662b6cdd370f0753f3642b7e4cf330b083c259ae14bcc9a83
     accessRestriction: >-
-      User-supplied measurement report. Origin URL is not yet recorded, so
-      this source cannot by itself promote the record to verified.
+      User-supplied measurement report. The official source URL was manually
+      recorded; retention and redistribution terms remain unassessed.
     observations:
       - field: device_identity
         originalValue: "Test Model: Archer AX1800; Series Model: Archer AX23V; Hardware Version: 1.0"
         meaning: device_identity
-        locator: {page: 5, description: "General information table"}
+        locator: {page: 6, description: "General information table"}
       - field: dfs_requirements
         originalValue: "CAC >=60s; channel move <=10s; closing transmission <=0.26s; non-occupancy >=30min"
         meaning: regulatory_limit
         locator: {page: 9, description: "DFS requirement values table"}
   - role: test_report
-    sourceUrl: urn:sha256:baf492385f88a582be6103a11bd3cd34cf0cd77c6e2142e02aa96cef505119d2
-    sourceUrlRetrievedAt: "2026-08-29T23:27:57Z"
+    sourceUrl: "https://www.tele.soumu.go.jp/giteki/SearchServlet2?PageID=jt01&ATF=127745002"
+    sourceUrlRetrievedAt: "2026-08-31T12:05:33+09:00"
     retrievedAt: "2026-08-29T23:27:57Z"
     retriever: user-supplied import
     originalFilename: 201-230283_02_002.pdf
     mimeType: application/pdf
     sha256: baf492385f88a582be6103a11bd3cd34cf0cd77c6e2142e02aa96cef505119d2
     accessRestriction: >-
-      User-supplied measurement report. Origin URL is not yet recorded, so
-      this source cannot by itself promote the record to verified.
+      User-supplied measurement report. The official source URL was manually
+      recorded; retention and redistribution terms remain unassessed.
     observations:
       - field: device_identity
         originalValue: "Test Model: Archer AX1800; Series Model: Archer AX23V; Hardware Version: 1.0"
         meaning: device_identity
-        locator: {page: 5, description: "General information table"}
+        locator: {page: 7, description: "General information table"}
       - field: 2g4_channel_sets
         originalValue: "HT20/HE20: CH01-CH13; HT40/HE40: CH03-CH11"
         meaning: configured
@@ -48,22 +94,22 @@ sources:
         meaning: regulatory_limit
         locator: {page: 19, description: "Antenna power tolerance limit table"}
   - role: test_report
-    sourceUrl: urn:sha256:fb8a4b0de0bd7d576c0b72c6ed9db389c5315657e41f504e334c7df616ba0ec0
-    sourceUrlRetrievedAt: "2026-08-29T23:27:57Z"
+    sourceUrl: "https://www.tele.soumu.go.jp/giteki/SearchServlet2?PageID=jt01&ATF=127746003"
+    sourceUrlRetrievedAt: "2026-08-31T12:06:49+09:00"
     retrievedAt: "2026-08-29T23:27:57Z"
     retriever: user-supplied import
     originalFilename: 201-230283_02_003.pdf
     mimeType: application/pdf
     sha256: fb8a4b0de0bd7d576c0b72c6ed9db389c5315657e41f504e334c7df616ba0ec0
     accessRestriction: >-
-      User-supplied measurement report. Origin URL is not yet recorded, so
-      this source cannot by itself promote the record to verified.
+      User-supplied measurement report. The official source URL was manually
+      recorded; retention and redistribution terms remain unassessed.
     observations:
       - field: device_identity
         originalValue: "Test Model: Archer AX1800; Series Model: Archer AX23V; Hardware Version: 1.0"
         meaning: device_identity
-        locator: {page: 5, description: "General information table"}
+        locator: {page: 7, description: "General information table"}
       - field: 5ghz_channel_sets
         originalValue: "W52: 36,40,44,48; W53: 52,56,60,64; W56: 100-144"
         meaning: configured
-        locator: {page: 8, description: "Channel list"}
+        locator: {page: 7, description: "Channel list"}
