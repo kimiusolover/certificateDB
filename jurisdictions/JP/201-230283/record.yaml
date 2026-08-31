@@ -2,7 +2,7 @@ apiVersion: certificateDB/v1
 kind: CertificationRecord
 metadata:
   name: jp-201-230283-tp-link-archer-ax23v-v1
-status: reviewed
+status: verified
 jurisdiction: JP
 authority: MIC
 certificationId: "201-230283"
@@ -10,10 +10,10 @@ deviceRef: devices/tp-link/archer-ax23v-v1.yaml
 evidenceRef: jurisdictions/JP/201-230283/evidence.yaml
 matchStatus: confirmed
 review:
-  reviewedAt: "2026-08-31T17:25:30+09:00"
+  reviewedAt: "2026-08-31T18:35:05+09:00"
   reviewer: nakan
   decision: accepted
-  subjectSha256: 444b060581337c1114acc0db1f3e81d4a6f8c331799f5849647c4f28fb58b202
+  subjectSha256: 41d105a4fdc22306ee7c384b50c963c1228dbbcbb54f6e29b48ba85ad883a392
   evidenceSha256:
     - bd856de5f7714d86cdd27539ba8c84937679fe42eb1c70344ae0edbf3df3c9fb
     - a1df493125047a57c9738baf7b49ddf1ec7bdb3dddaf00c73605bfd05333ea30
@@ -23,7 +23,9 @@ review:
     - baf492385f88a582be6103a11bd3cd34cf0cd77c6e2142e02aa96cef505119d2
     - fb8a4b0de0bd7d576c0b72c6ed9db389c5315657e41f504e334c7df616ba0ec0
   notes: >-
-    Self-review checked the current extracted observations against the cited
-    MIC registry CSV and test-report page locators. Device identity was
-    compared with the user-held physical-label photograph, retained only by
-    hash because it contains a serial number.
+    Self-review independently checked the current extracted safety-relevant
+    observations against the cited MIC registry CSV and test-report page
+    locators. Device identity was compared with the user-held physical-label
+    photograph, retained only by hash because it contains a serial number.
+    Radio/board revision remains unknown; this record makes no claim about
+    calibration, board data, runtime configuration, or RF transmission rights.

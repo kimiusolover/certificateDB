@@ -9,7 +9,7 @@
   "evidence": [
     {
       "path": "jurisdictions/JP/201-230283/record.yaml",
-      "sha256": "41d105a4fdc22306ee7c384b50c963c1228dbbcbb54f6e29b48ba85ad883a392"
+      "sha256": "81061baed758e9296ebd2cfad35e711499dd2f041bbb22ad41718cd8797dc455"
     },
     {
       "path": "documents/JP/201-230283/SearchResult (1).csv",
@@ -35,7 +35,7 @@
   "review": {
     "required": true,
     "reviewer": "nakan",
-    "reviewedAt": "2026-08-31T17:25:30+09:00",
+    "reviewedAt": "2026-08-31T18:35:05+09:00",
     "decision": "accepted",
     "notes": "Self-review confirmed the MIC registry CSV, cited test reports, and user-held private physical-label photograph identify Archer AX23V / JP/1.0 with certification number 201-230283. The official source URLs for 201-230283_01_004.pdf, 201-230283_02_001.pdf, 201-230283_02_002.pdf, and 201-230283_02_003.pdf were manually recorded. Verified source locators were corrected without changing any observed values. The private photo is hash-recorded in the evidence bundle and excluded from this repository because it contains a serial number."
   }

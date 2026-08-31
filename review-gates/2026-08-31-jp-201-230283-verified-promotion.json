@@ -4,7 +4,7 @@
   "scope": "verified_promotion",
   "subject": {
     "path": "jurisdictions/JP/201-230283/record.yaml",
-    "sha256": "41d105a4fdc22306ee7c384b50c963c1228dbbcbb54f6e29b48ba85ad883a392"
+    "sha256": "81061baed758e9296ebd2cfad35e711499dd2f041bbb22ad41718cd8797dc455"
   },
   "evidence": [
     {
@@ -35,8 +35,8 @@
   "review": {
     "required": true,
     "reviewer": "nakan",
-    "reviewedAt": "2026-08-31T17:25:30+09:00",
+    "reviewedAt": "2026-08-31T18:35:05+09:00",
     "decision": "accepted",
-    "notes": "Self-review promoted this record to reviewed after checking the cited registry CSV, report hashes, reported device identity, and every currently extracted observation against its recorded locator. This evidence-review status is not RF transmission authorization."
+    "notes": "Self-review promoted this evidence record to verified without device disassembly. The scope verifies identity, source integrity, and current extracted safety-relevant observations only. Radio/board revision, calibration, board data, runtime configuration, and RF transmission rights remain outside this record and unknown where not evidenced."
   }
 }
