@@ -110,6 +110,6 @@ sources:
         meaning: device_identity
         locator: {page: 7, description: "General information table"}
       - field: 5ghz_channel_sets
-        originalValue: "W52: 36,40,44,48; W53: 52,56,60,64; W56: 100-144"
+        originalValue: "W52: 36,40,44,48; W53: 52,56,60,64; W56 20MHz: 100,104,108,112,116,120,124,128,132,136,140,144; W56 40MHz: 102,110,118,126,134,142; W56 80MHz: 106,122,138"
         meaning: configured
         locator: {page: 7, description: "Channel list"}

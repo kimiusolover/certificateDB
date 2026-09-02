@@ -9,7 +9,7 @@
   "evidence": [
     {
       "path": "jurisdictions/JP/201-230283/evidence.yaml",
-      "sha256": "3f2b960b47df55cfc1d5fa25b06b64a253d835132f4e3ef09829cf471ae9c3b9"
+      "sha256": "91adab74ef2ed30614dcb7247235666cf1e379829747e4aa7c71cb428cde7bd2"
     },
     {
       "path": "documents/JP/201-230283/SearchResult (1).csv",
@@ -23,8 +23,8 @@
   "review": {
     "required": true,
     "reviewer": "nakan",
-    "reviewedAt": "2026-08-31T19:15:56+09:00",
+    "reviewedAt": "2026-09-02T13:32:27+09:00",
     "decision": "accepted",
-    "notes": "Self-review promoted this evidence record to verified without device disassembly. The scope verifies identity, source integrity, and current extracted safety-relevant observations only. Test-report originals are retained privately and verified by their recorded official URLs and SHA-256 values. Radio/board revision, calibration, board data, runtime configuration, and RF transmission rights remain outside this record and unknown where not evidenced."
+    "notes": "Self-review promoted this evidence record to verified without device disassembly. The scope verifies identity, source integrity, and current extracted safety-relevant observations only. Test-report originals are retained privately and verified by their recorded official URLs and SHA-256 values. The W56 channel observation was re-reviewed against report 201-230283_02_003.pdf and corrected to enumerate the distinct 20 MHz, 40 MHz, and 80 MHz channel sets. Radio/board revision, calibration, board data, runtime configuration, and RF transmission rights remain outside this record and unknown where not evidenced."
   }
 }
